@@ -11,6 +11,8 @@ import Foundation
 class MyEpisodeModel {
     var title: String?
     var released: String?
+    var episode: String?
     var imdbRating: String?
     var imdbID: String?
+    var episodeDetail: [MyEpisodeDetailModel]?
 }

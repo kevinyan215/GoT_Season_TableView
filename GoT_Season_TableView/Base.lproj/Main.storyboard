@@ -59,10 +59,10 @@
             </objects>
             <point key="canvasLocation" x="924" y="1677"/>
         </scene>
-        <!--View Controller-->
+        <!--Available Season View Controller-->
         <scene sceneID="EZ4-3V-VjB">
             <objects>
-                <viewController id="pvC-8y-6c7" sceneMemberID="viewController">
+                <viewController id="pvC-8y-6c7" customClass="AvailableSeasonViewController" customModule="GoT_Season_TableView" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KHT-Xt-R4Q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,16 +70,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hi9-Ob-H7H">
                                 <rect key="frame" x="0.0" y="94" width="375" height="524"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="EXc-Os-AwA">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EXc-Os-AwA" id="30G-t9-jN2">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOI-oY-fQ7">
                                 <rect key="frame" x="154" y="74" width="46" height="30"/>
@@ -101,6 +91,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Zv6-Bh-fNo"/>
                     <connections>
+                        <outlet property="tableView" destination="Hi9-Ob-H7H" id="HDo-rx-dga"/>
                         <segue destination="l8S-mM-XPS" kind="show" id="2yE-mC-8vh"/>
                     </connections>
                 </viewController>
@@ -239,7 +230,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lzM-vw-51I"/>
-        <segue reference="2yE-mC-8vh"/>
+        <segue reference="EJo-Iv-XmF"/>
+        <segue reference="TnX-wU-rva"/>
     </inferredMetricsTieBreakers>
 </document>

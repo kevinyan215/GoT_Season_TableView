@@ -27,6 +27,4 @@ class MyEpisodeDetailModel {
     var poster: String? //url but will convert to image later...
     var imdbRating: String?
     var imdbVotes: String?
-
-    
 }

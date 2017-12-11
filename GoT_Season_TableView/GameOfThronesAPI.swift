@@ -23,7 +23,7 @@ struct GameOfThronesAPI {
     struct EndPoint {
         static let main = "https://www.omdbapi.com/?apikey=6bfb4e66&t=Game+Of+Thrones"
         static let season = "&season=" //"http://www.omdbapi.com/?apikey=6bfb4e66&t=Game+Of+Thrones&season="
-        static let episode = "&episode="   //"http://www.omdbapi.com/?apikey=6bfb4e66&t=Game+Of+Thrones&season=1&episode=1"
+        static let episode = "&i="   //"http://www.omdbapi.com/?apikey=6bfb4e66&t=Game+Of+Thrones&season=1&episode=1"
     }
     
     struct Main {
@@ -34,5 +34,13 @@ struct GameOfThronesAPI {
         static let title = "Title"
         static let season = "Season"
         static let episodes = "Episodes"
+    }
+    
+    struct Episode {
+        static let title = "Title"
+        static let released = "Released"
+        static let episode = "Episode"
+        static let imdbRating = "imdbRating"
+        static let imdbID = "imdbID"
     }
 }

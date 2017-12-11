@@ -58,8 +58,20 @@ class NetworkManager {
         }
     }
     
-    //comes later
-    func downloadEpisodes() {
+    //TODO
+    func downloadEpisodeDetail() {
+        for season in DataSource.myMainModel.seasons {
+            guard let episodeList = season.episodes else{
+                continue
+            }
+            for episode in episodeList {
+                if let imdbId = episode.imdbID {
+                    let url = GameOfThronesAPI.EndPoint.main + GameOfThronesAPI.EndPoint.episode + imdbId
+//                    downloadEndPoint(urlString: url, downloadType: .episodeDetails)
+//                    episode.episodeDetail = "whatever is returned"
+                }
+            }
+        }
     }
     
     //api stuff
@@ -95,7 +107,7 @@ class NetworkManager {
                                 print("Parse Season")
                             case .episodeDetails:
                                 print("Parse Episode Details")
-                                Parser.parseEpisodeDetails(input: serializedJson)
+                                Parser.parseEpisodeDetail(input: serializedJson)
                             }
                         }
                         //parsing to your models...
