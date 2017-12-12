@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="17B1003" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DownloadedEpisodeList" representedClassName="DownloadedEpisodeList" syncable="YES">
+        <relationship name="episodes" toMany="YES" deletionRule="Nullify" destinationEntity="Episode" inverseName="downloadedEpisodeList" inverseEntity="Episode" syncable="YES"/>
+    </entity>
     <entity name="Episode" representedClassName="Episode" syncable="YES">
         <attribute name="imdbID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imdbRating" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="released" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="downloadedEpisodeList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DownloadedEpisodeList" inverseName="episodes" inverseEntity="DownloadedEpisodeList" syncable="YES"/>
     </entity>
     <entity name="Main" representedClassName="Main" syncable="YES">
         <attribute name="totalSeasons" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -15,8 +19,9 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Season" positionX="-63" positionY="-18" width="128" height="90"/>
-        <element name="Episode" positionX="-63" positionY="9" width="128" height="105"/>
+        <element name="Episode" positionX="-63" positionY="9" width="128" height="120"/>
         <element name="Main" positionX="-54" positionY="36" width="128" height="60"/>
+        <element name="Season" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="DownloadedEpisodeList" positionX="-54" positionY="27" width="128" height="60"/>
     </elements>
 </model>

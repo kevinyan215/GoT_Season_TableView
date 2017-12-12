@@ -10,14 +10,35 @@ import Foundation
 import UIKit
 
 class AvailableSeasonViewController: UIViewController {
-    
     @IBOutlet weak var tableView: UITableView!
+    var sectionRowSelected: (section: Int, row: Int)?
+    
     override func viewDidLoad(){
         tableView.dataSource = self
+        tableView.delegate = self
         
         //Creating/instantiating the nib -> then use TableView to register it
         let seasonTableViewCellNib: UINib = UINib(nibName: Keys.Xib.SeasonTableViewCellId, bundle: nil)
         tableView.register(seasonTableViewCellNib, forCellReuseIdentifier: Keys.Xib.SeasonTableViewCellId)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //assign values to availableEpisodeDetailsVC
+        
+        if let destVC = segue.destination as? AvailableEpisodeDetailViewController, let sectionRowSelected = sectionRowSelected, let episodeDetail = DataSource.myMainModel.seasons[sectionRowSelected.section].episodes?[sectionRowSelected.row].episodeDetail {
+            
+            //using force unwrapping for convenience, but is bad practice.. should refractor later
+            destVC.bundleContainer[Keys.AvailableEpisodeDetailViewController.title] = episodeDetail.title
+            destVC.bundleContainer[Keys.AvailableEpisodeDetailViewController.year] = episodeDetail.year
+            destVC.bundleContainer[Keys.AvailableEpisodeDetailViewController.rated] = episodeDetail.rated
+            destVC.bundleContainer[Keys.AvailableEpisodeDetailViewController.released] = episodeDetail.released
+            destVC.bundleContainer[Keys.AvailableEpisodeDetailViewController.season] = episodeDetail.season
+            destVC.bundleContainer[Keys.AvailableEpisodeDetailViewController.episode] = episodeDetail.episode
+            
+            destVC.bundleContainer[Keys.AvailableEpisodeDetailViewController.imdbVotes] = episodeDetail.imdbVotes
+        } else {
+            print("Getting nil episode detail @ prepareForSegue")
+        }
     }
 }
 
@@ -65,7 +86,15 @@ extension AvailableSeasonViewController: UITableViewDataSource {
 //delegate here
 extension AvailableSeasonViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let episodeSelected = indexPath.
+        guard let episodeSelected = DataSource.myMainModel.seasons[indexPath.section].episodes?[indexPath.row], let episodeDetails = episodeSelected.episodeDetail else {
+            return
+        }
+        print("Episode Seasons: \(episodeDetails.season), Episode number: \(episodeDetails.episode), Episode Title: \(episodeDetails.title)")
+        
+        
+        sectionRowSelected = (indexPath.section, indexPath.row)
+        
+        performSegue(withIdentifier: Keys.Segue.availableSeasonVCtoDetailVCSegue, sender: self)
     }
 }
 

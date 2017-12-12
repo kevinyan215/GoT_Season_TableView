@@ -116,7 +116,7 @@ class Parser {
         if let imdbVotes = input[GameOfThronesAPI.EpisodeDetail.imdbVotes] as? String {
             myEpisodeDetailModel.imdbVotes = imdbVotes
         }
-        print("myEpisodeDetailModel: year: \(myEpisodeDetailModel.year) , season: \(myEpisodeDetailModel.season), episode: \(myEpisodeDetailModel.episode)")
+//        print("myEpisodeDetailModel: year: \(myEpisodeDetailModel.year) , season: \(myEpisodeDetailModel.season), episode: \(myEpisodeDetailModel.episode)")
         return myEpisodeDetailModel
     }
 }

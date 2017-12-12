@@ -10,6 +10,30 @@ import Foundation
 
 struct Keys {
     struct Segue {
+        static let availableSeasonVCtoDetailVCSegue = "availableSeasonVCtoDetailVC"
+    }
+    
+    struct AvailableEpisodeDetailViewController {
+        static let title = "Title"
+        static let year = "Year"
+        static let rated = "Rated"
+        static let released = "Released"
+        static let season = "Season"
+        static let episode = "Episode"
+        static let runtime = "Runtime"
+        static let genre = "Genre"
+        static let director = "Director"
+        static let writer = "Writer"
+        static let actors = "Actors"
+        static let plot = "Plot"
+        static let language = "Language"
+        static let country = "Country"
+        static let awards = "Awards"
+        static let poster = "Poster"
+        static let imdbRating = "imdbRating"
+        static let imdbVotes = "imdbVotes"
+        static let imdbID = "imdbID"
+        static let seriesID = "seriesID"
     }
     
     struct Xib {

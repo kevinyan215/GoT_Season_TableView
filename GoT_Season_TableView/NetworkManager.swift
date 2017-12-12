@@ -46,7 +46,7 @@ class NetworkManager {
             for episode in episodeList {
                 if let imdbId = episode.imdbID {
                     let url = GameOfThronesAPI.EndPoint.main + GameOfThronesAPI.EndPoint.episode + imdbId
-                    print("Episode Detail URL: \(url)")
+//                    print("Episode Detail URL: \(url)")
                     downloadEndPoint(urlString: url, handler: {(serializedJson) in
                         if let serializedJson = serializedJson as? [String:Any] {
                             episode.episodeDetail = Parser.parseEpisodeDetail(input: serializedJson)
@@ -74,7 +74,7 @@ class NetworkManager {
                         //Dispatch queue?
                         //print(serializedJson) //executed after main thread finishes?
                         DispatchQueue.main.async {
-                            print("Download Type: (downloadType), Serialized Json: \(serializedJson)") // runs on main thread?
+//                            print("Download Type: (downloadType), Serialized Json: \(serializedJson)") // runs on main thread?
                             handler(serializedJson)
                             //delegate do xyz after downloading
                             //self.delegate?.didDownload()
