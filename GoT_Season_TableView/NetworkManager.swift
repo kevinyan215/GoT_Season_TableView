@@ -13,36 +13,12 @@ class NetworkManager {
     var delegate: NetworkManagerDelegate?
     
     func downloadMain(){
-        let urlString = GameOfThronesAPI.EndPoint.main
-        downloadEndPoint(urlString: urlString, downloadType: .main)
-//        guard let url = URL(string: urlString) else {
-//            print("invalid url")
-//            return
-//        }
-//
-//        let task = URLSession.shared.dataTask(with: url, completionHandler: {(data,url,error) in
-//            if error != nil {
-//                print("error with URLSession data task: \(error)")
-//                return
-//            }
-//            do {
-//                if let data = data {
-//                    if let serializedJson = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [String:Any]{
-////                        print(serializedJson)
-////                        Dispatch queue?
-//                        DispatchQueue.main.async {
-//                            Parser.parseMain(input: serializedJson)
-//                        }
-//                        //parsing to your models...
-//                    //delegate do xyz after downloading
-////                    self.delegate?.didDownload()
-//                    }
-//                }
-//            } catch {
-//                print("error with JSONSerialization: \(error)")
-//            }
-//        })
-//        task.resume()
+        let urlString = GameOfThronesAPI.EndPoint.main + GameOfThronesAPI.EndPoint.gameOfThrones
+        downloadEndPoint(urlString: urlString, handler: {(serializedJson) in
+            if let serializedJson = serializedJson as? [String:Any]{
+                Parser.parseMain(input: serializedJson)
+            }
+        })
     }
     
     func downloadSeasons() {
@@ -52,13 +28,16 @@ class NetworkManager {
 //        }
         let totalSeason = 8
         for season in 1...totalSeason {
-            let endPoint = GameOfThronesAPI.EndPoint.main + GameOfThronesAPI.EndPoint.season + "\(season)"
+            let endPoint = GameOfThronesAPI.EndPoint.main + GameOfThronesAPI.EndPoint.gameOfThrones + GameOfThronesAPI.EndPoint.season + "\(season)"
 //            print(endPoint)
-            downloadEndPoint(urlString: endPoint, downloadType: .season)
+            downloadEndPoint(urlString: endPoint, handler: {(serializedJson) in
+                if let serializedJson = serializedJson as? [String:Any]{
+                    Parser.parseSeason(input: serializedJson)
+                }
+            })
         }
     }
     
-    //TODO
     func downloadEpisodeDetail() {
         for season in DataSource.myMainModel.seasons {
             guard let episodeList = season.episodes else{
@@ -67,24 +46,23 @@ class NetworkManager {
             for episode in episodeList {
                 if let imdbId = episode.imdbID {
                     let url = GameOfThronesAPI.EndPoint.main + GameOfThronesAPI.EndPoint.episode + imdbId
-//                    downloadEndPoint(urlString: url, downloadType: .episodeDetails)
-//                    episode.episodeDetail = "whatever is returned"
+                    print("Episode Detail URL: \(url)")
+                    downloadEndPoint(urlString: url, handler: {(serializedJson) in
+                        if let serializedJson = serializedJson as? [String:Any] {
+                            episode.episodeDetail = Parser.parseEpisodeDetail(input: serializedJson)
+                        }
+                    })
                 }
             }
         }
     }
     
-    //api stuff
-//    let season = 7
-//    let episode = 7
-//    let endPoint = GameOfThronesAPI.EndPoint.title + GameOfThronesAPI.EndPoint.season + "\(season)" + GameOfThronesAPI.EndPoint.episode + "\(episode)"
-//    print(endPoint)
-    func downloadEndPoint(urlString: String, downloadType: GameOfThronesAPI.DownloadType) {
+    //general url download
+    func downloadEndPoint(urlString: String, handler: @escaping((Any)->Void)){
         guard let url = URL(string: urlString) else {
             print("invalid url")
             return
         }
-        
         let task = URLSession.shared.dataTask(with: url, completionHandler: {(data,url,error) in
             if error != nil {
                 print("error with URLSession data task: \(error)")
@@ -92,28 +70,15 @@ class NetworkManager {
             }
             do {
                 if let data = data {
-                    if let serializedJson = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [String:Any]{
+                    let serializedJson = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
                         //Dispatch queue?
-//                        print(serializedJson) //executed after main thread finishes?
+                        //print(serializedJson) //executed after main thread finishes?
                         DispatchQueue.main.async {
-//                            let downloadType: GameOfThronesAPI.DownloadType = GameOfThronesAPI.DownloadType.main
-                            print("Download Type: \(downloadType), Serialized Json: \(serializedJson)") // runs on main thread?
-                            switch downloadType {
-                            case .main:
-                                print("Parse Main")
-                                Parser.parseMain(input: serializedJson)
-                            case .season:
-                                Parser.parseSeason(input: serializedJson)
-                                print("Parse Season")
-                            case .episodeDetails:
-                                print("Parse Episode Details")
-                                Parser.parseEpisodeDetail(input: serializedJson)
-                            }
+                            print("Download Type: (downloadType), Serialized Json: \(serializedJson)") // runs on main thread?
+                            handler(serializedJson)
+                            //delegate do xyz after downloading
+                            //self.delegate?.didDownload()
                         }
-                        //parsing to your models...
-                        //delegate do xyz after downloading
-                        //                    self.delegate?.didDownload()
-                    }
                 }
             } catch {
                 print("error with JSONSerialization: \(error)")

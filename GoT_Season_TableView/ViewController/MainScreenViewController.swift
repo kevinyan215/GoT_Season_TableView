@@ -16,7 +16,7 @@ class MainScreenViewController: UIViewController {
         let networkManager = NetworkManager()
         networkManager.downloadMain()
         networkManager.downloadSeasons()
-        
+        networkManager.downloadEpisodeDetail()
         //        Model.
         //core data stuff
         //        CoreDataManager().insert()

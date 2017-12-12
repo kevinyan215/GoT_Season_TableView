@@ -142,10 +142,10 @@
             </objects>
             <point key="canvasLocation" x="-866" y="1291"/>
         </scene>
-        <!--View Controller-->
+        <!--Available Episode Detail View Controller-->
         <scene sceneID="HnO-cL-fpb">
             <objects>
-                <viewController id="l8S-mM-XPS" sceneMemberID="viewController">
+                <viewController id="l8S-mM-XPS" customClass="AvailableEpisodeDetailViewController" customModule="GoT_Season_TableView" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3u6-n4-nMi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

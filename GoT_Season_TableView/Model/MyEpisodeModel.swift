@@ -14,5 +14,5 @@ class MyEpisodeModel {
     var episode: String?
     var imdbRating: String?
     var imdbID: String?
-    var episodeDetail: [MyEpisodeDetailModel]?
+    var episodeDetail: MyEpisodeDetailModel?
 }

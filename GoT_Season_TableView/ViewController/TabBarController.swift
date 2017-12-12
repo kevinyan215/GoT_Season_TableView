@@ -13,10 +13,13 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-//        print("""
-//            DataSource model:
-//            Seasons: \(DataSource.myMainModel.seasons)
-//            """)
+        let networkManager = NetworkManager()
+        networkManager.downloadEpisodeDetail()
+        
+        print("""
+            DataSource model:
+            Seasons: \(DataSource.myMainModel.seasons)
+            """)
     }
 
     override func viewWillAppear(_ animated: Bool) {

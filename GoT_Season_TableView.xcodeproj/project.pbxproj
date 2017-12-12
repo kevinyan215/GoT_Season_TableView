@@ -22,6 +22,7 @@
 		4D801F461FDE09CB0035703E /* AvailableSeasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D801F451FDE09CB0035703E /* AvailableSeasonViewController.swift */; };
 		4D8978551FDDF4D300231F0F /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8978541FDDF4D300231F0F /* MainScreenViewController.swift */; };
 		4DD5EDE01FDE373A00D95133 /* SeasonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD5EDDF1FDE373A00D95133 /* SeasonTableViewCell.swift */; };
+		4DD5EDE21FDEF54B00D95133 /* AvailableEpisodeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD5EDE11FDEF54B00D95133 /* AvailableEpisodeDetailViewController.swift */; };
 		4DE4E8E21FDC52C100CABAE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE4E8E11FDC52C100CABAE1 /* AppDelegate.swift */; };
 		4DE4E8E41FDC52C100CABAE1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE4E8E31FDC52C100CABAE1 /* TabBarController.swift */; };
 		4DE4E8E71FDC52C100CABAE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DE4E8E51FDC52C100CABAE1 /* Main.storyboard */; };
@@ -72,6 +73,7 @@
 		4D801F451FDE09CB0035703E /* AvailableSeasonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSeasonViewController.swift; sourceTree = "<group>"; };
 		4D8978541FDDF4D300231F0F /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		4DD5EDDF1FDE373A00D95133 /* SeasonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonTableViewCell.swift; sourceTree = "<group>"; };
+		4DD5EDE11FDEF54B00D95133 /* AvailableEpisodeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableEpisodeDetailViewController.swift; sourceTree = "<group>"; };
 		4DE4E8DE1FDC52C100CABAE1 /* GoT_Season_TableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoT_Season_TableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DE4E8E11FDC52C100CABAE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DE4E8E31FDC52C100CABAE1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				4D8978541FDDF4D300231F0F /* MainScreenViewController.swift */,
 				4DE4E8E31FDC52C100CABAE1 /* TabBarController.swift */,
 				4D801F451FDE09CB0035703E /* AvailableSeasonViewController.swift */,
+				4DD5EDE11FDEF54B00D95133 /* AvailableEpisodeDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				4DE4E8EA1FDC52C100CABAE1 /* GoT_Season_TableView.xcdatamodeld in Sources */,
 				4D14CF271FDDBF0500F6352F /* MyEpisodeModel.swift in Sources */,
 				4DD5EDE01FDE373A00D95133 /* SeasonTableViewCell.swift in Sources */,
+				4DD5EDE21FDEF54B00D95133 /* AvailableEpisodeDetailViewController.swift in Sources */,
 				4D8978551FDDF4D300231F0F /* MainScreenViewController.swift in Sources */,
 				4DE4E9131FDC65A700CABAE1 /* GameOfThronesAPI.swift in Sources */,
 				4D3408741FDE299D00FC737D /* Keys.swift in Sources */,

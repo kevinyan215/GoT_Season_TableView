@@ -60,8 +60,63 @@ class Parser {
         return myEpisodeModelList
     }
     
-    //comes later
-    static func parseEpisodeDetail(input: [String:Any]) {
-        //do after download
+    static func parseEpisodeDetail(input: [String:Any]) -> MyEpisodeDetailModel? {
+        let myEpisodeDetailModel = MyEpisodeDetailModel()
+        if let title = input[GameOfThronesAPI.EpisodeDetail.title] as? String {
+            myEpisodeDetailModel.title = title
+        }
+        if let year = input[GameOfThronesAPI.EpisodeDetail.year] as? String {
+            myEpisodeDetailModel.year = year
+        }
+        if let rated = input[GameOfThronesAPI.EpisodeDetail.rated] as? String {
+            myEpisodeDetailModel.rated = rated
+        }
+        if let released = input[GameOfThronesAPI.EpisodeDetail.released] as? String {
+            myEpisodeDetailModel.released = released
+        }
+        if let season = input[GameOfThronesAPI.EpisodeDetail.season] as? String {
+            myEpisodeDetailModel.season = season
+        }
+        if let episode = input[GameOfThronesAPI.EpisodeDetail.episode] as? String {
+            myEpisodeDetailModel.episode = episode
+        }
+        if let runtime = input[GameOfThronesAPI.EpisodeDetail.runtime] as? String {
+            myEpisodeDetailModel.runtime = runtime
+        }
+        if let genre = input[GameOfThronesAPI.EpisodeDetail.genre] as? String {
+            myEpisodeDetailModel.genre = genre
+        }
+        if let director = input[GameOfThronesAPI.EpisodeDetail.director] as? String {
+            myEpisodeDetailModel.director = director
+        }
+        if let writer = input[GameOfThronesAPI.EpisodeDetail.writer] as? String {
+            myEpisodeDetailModel.writer = writer
+        }
+        if let actors = input[GameOfThronesAPI.EpisodeDetail.actors] as? String {
+            myEpisodeDetailModel.actors = actors
+        }
+        if let plot = input[GameOfThronesAPI.EpisodeDetail.plot] as? String {
+            myEpisodeDetailModel.plot = plot
+        }
+        if let language = input[GameOfThronesAPI.EpisodeDetail.language] as? String {
+            myEpisodeDetailModel.language = language
+        }
+        if let country = input[GameOfThronesAPI.EpisodeDetail.country] as? String {
+            myEpisodeDetailModel.country = country
+        }
+        if let awards = input[GameOfThronesAPI.EpisodeDetail.awards] as? String {
+            myEpisodeDetailModel.awards = awards
+        }
+        if let poster = input[GameOfThronesAPI.EpisodeDetail.poster] as? String {
+            myEpisodeDetailModel.poster = poster
+        }
+        if let imdbRating = input[GameOfThronesAPI.EpisodeDetail.imdbRating] as? String {
+            myEpisodeDetailModel.imdbRating = imdbRating
+        }
+        if let imdbVotes = input[GameOfThronesAPI.EpisodeDetail.imdbVotes] as? String {
+            myEpisodeDetailModel.imdbVotes = imdbVotes
+        }
+        print("myEpisodeDetailModel: year: \(myEpisodeDetailModel.year) , season: \(myEpisodeDetailModel.season), episode: \(myEpisodeDetailModel.episode)")
+        return myEpisodeDetailModel
     }
 }
