@@ -75,7 +75,8 @@ extension DownloadedSeasonViewController: UITableViewDataSource {
         cell.title.text = episode.title
         cell.released.text = episode.released
         cell.imdbRating.text = episode.imdbRating
-        cell.buttonOutlet.setTitle("Delete", for: .normal)
+//        cell.buttonOutlet.setTitle("Delete", for: .normal)
+        cell.buttonOutlet.setImage(#imageLiteral(resourceName: "delete_button"), for: .normal)
         return cell
     }
     

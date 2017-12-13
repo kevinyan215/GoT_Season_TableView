@@ -75,8 +75,10 @@ extension AvailableSeasonViewController: UITableViewDataSource {
             cell.title.text = episode.title
             cell.released.text = episode.released
             cell.imdbRating.text = episode.imdbRating
-            let buttonTitle = episode.downloaded ? "Delete" : "Download"
-            cell.buttonOutlet.setTitle(buttonTitle, for: .normal)
+//            let buttonTitle = episode.downloaded ? "Delete" : "Download"
+//            cell.buttonOutlet.setTitle(buttonTitle, for: .normal)
+            let buttonImage = episode.downloaded ? #imageLiteral(resourceName: "delete_button") : #imageLiteral(resourceName: "download_button")
+            cell.buttonOutlet.setImage(buttonImage, for: .normal)
         }
         return cell
     }

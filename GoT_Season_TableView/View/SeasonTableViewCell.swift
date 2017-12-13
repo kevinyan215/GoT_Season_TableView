@@ -31,7 +31,9 @@ class SeasonTableViewCell: UITableViewCell {
                     if episode.downloaded {
                         DataSource.downloadedEpisodeList.append(episode)
                         CoreDataManager().insertToCoreData(episode: episode) //insert to core data. might can do this later. when user exits. don't have to insert to core data now, can just use local model
-                        buttonOutlet.setTitle("Delete", for: .normal)
+//                        buttonOutlet.setTitle("Delete", for: .normal)
+                        buttonOutlet.setImage(#imageLiteral(resourceName: "delete_button"), for: .normal)
+
                     } else {
                         //might be better to use a set. more efficient. this works for now though..
                         for (index,deleteEpisode) in DataSource.downloadedEpisodeList.enumerated() {
@@ -39,8 +41,8 @@ class SeasonTableViewCell: UITableViewCell {
                                 DataSource.downloadedEpisodeList.remove(at: index)
                             }
                         }
-                        buttonOutlet.setTitle("Download", for: .normal)
-                        
+//                        buttonOutlet.setTitle("Download", for: .normal)
+                        buttonOutlet.setImage(#imageLiteral(resourceName: "download_button"), for: .normal)
                         //remove from core data. same thing. probably can remove from core data later. just remove from local model now
                     }
                     print("@ AvailableSeasonViewController" )
