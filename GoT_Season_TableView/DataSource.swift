@@ -10,5 +10,5 @@ import Foundation
 
 struct DataSource {
     static var myMainModel = MyMainModel()
-//    static var seasons: [Int: Season] = [:]
+    static var downloadedEpisodeList: [MyEpisodeModel] = []
 }

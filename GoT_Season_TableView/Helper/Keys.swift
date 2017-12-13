@@ -13,7 +13,7 @@ struct Keys {
         static let availableSeasonVCtoDetailVCSegue = "availableSeasonVCtoDetailVC"
     }
     
-    struct AvailableEpisodeDetailViewController {
+    struct EpisodeDetailViewController {
         static let title = "Title"
         static let year = "Year"
         static let rated = "Rated"

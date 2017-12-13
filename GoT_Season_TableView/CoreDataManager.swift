@@ -11,56 +11,93 @@ import CoreData
 import UIKit
 
 class CoreDataManager {
+
     func getContext() -> NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedObjectContext = appDelegate.persistentContainer.viewContext
         return managedObjectContext
     }
-    
-    func someFuncNameToGetSeasons() -> [Season] {
+
+    func getEpisodeList() -> [MyEpisodeModel] {
         let managedObjectContext = getContext()
-        var seasons: [Season] = []
-        let fetchRequest = NSFetchRequest<Season>(entityName: CoreDataKey.Entity.season)
+        var episodeList: [MyEpisodeModel] = []
+        let fetchRequest = NSFetchRequest<Episode>(entityName: CoreDataKey.Entity.episode)
 
         do {
-            let results: [Season] = try managedObjectContext.fetch(fetchRequest)
+            let results: [Episode] = try managedObjectContext.fetch(fetchRequest)
             for result in results {
-                print("Season Number: \(result.season) + Season Title: \(result.title)")
+                let episodeModel = MyEpisodeModel()
+                episodeModel.title = result.title
+                episodeModel.released = result.released
+                episodeModel.episode = result.episode
+                episodeModel.imdbRating = result.imdbRating
+                episodeModel.imdbID = result.imdbID
+                episodeModel.downloaded = result.downloaded
+                
+                episodeList.append(episodeModel)
+//                print("Episode Title: \(result.title) released: \(result.released) Downloaded: \(result.downloaded)")
             }
-            seasons = results
         } catch {
             //error handling...
         }
-        
-        return seasons
+        return episodeList
     }
-    
-    func insert(){
-        let managedObjectContext = getContext()
-        let seasonManagedObject = Season(context: managedObjectContext)
-        seasonManagedObject.season = "5"
-        seasonManagedObject.title = "GoT"
-        managedObjectContext.insert(seasonManagedObject)
 
+    //insert all downloaded episodes to Core Data - have to figure out where to put it in order to use it- where in the app lifecycle?
+    func insertAllToCoreData(){
+        let managedObjectContext = getContext()
+        for episode in DataSource.downloadedEpisodeList {
+            insertToCoreData(episode: episode)
+        }
         do {
             try managedObjectContext.save()
         } catch {
             //errors
         }
-        
     }
-    
-    func delete(season: [Season]){
+
+    func insertToCoreData(episode: MyEpisodeModel){
         let managedObjectContext = getContext()
-        
-        for season in season {
-            managedObjectContext.delete(season)
-        }
-        
+        let episodeManagedObject = Episode(context: managedObjectContext)
+        episodeManagedObject.title = episode.title
+        episodeManagedObject.released = episode.released
+        episodeManagedObject.imdbRating = episode.imdbRating
+        episodeManagedObject.downloaded = episode.downloaded
+        managedObjectContext.insert(episodeManagedObject)
         do {
             try managedObjectContext.save()
         } catch {
-            
+            //errors
+        }
+    }
+    
+    //not needed now. but will when deleting ..
+//    func delete(episodeList: [Episode]){
+//        let managedObjectContext = getContext()
+//
+//        for episode in episodeList {
+//            managedObjectContext.delete(episode)
+//        }
+//
+//        do {
+//            try managedObjectContext.save()
+//        } catch {
+//
+//        }
+//    }
+    
+    func clear() {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: CoreDataKey.Entity.episode)
+        do {
+            if let results = try getContext().fetch(fetchRequest) as? [NSManagedObject] {
+                for object in results {
+                    getContext().delete(object)
+                }
+            }
+            try getContext().save()
+        } catch{
+            //error handling
         }
     }
 }
+

@@ -11,10 +11,11 @@ import Foundation
 struct CoreDataKey {
     struct Entity {
         static let season = "Season"
+        static let episode = "Episode"
     }
-    struct Season {
-        static let seasonNumber = "seasonNumber"
-        static let episodes = "episodes"
-        static let title = "title"
-    }
+//    struct Season {
+//        static let seasonNumber = "seasonNumber"
+//        static let episodes = "episodes"
+//        static let title = "title"
+//    }
 }

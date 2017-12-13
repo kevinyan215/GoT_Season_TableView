@@ -17,14 +17,11 @@ class MainScreenViewController: UIViewController {
         networkManager.downloadMain()
         networkManager.downloadSeasons()
         networkManager.downloadEpisodeDetail()
-        //        Model.
         //core data stuff
-        //        CoreDataManager().insert()
-        //        let seasons: [Season] = CoreDataManager().someFuncNameToGetSeasons()
-        //        print("seasons from Core Data: \(seasons)")
-        //        CoreDataManager().delete(season: seasons)
-        //        print("deleted?")
-        //        CoreDataManager().someFuncNameToGetSeasons()
-
+        let dataManager = CoreDataManager()
+//        dataManager.clear()
+        
+        //Local Downloaded Episodes
+        DataSource.downloadedEpisodeList = dataManager.getEpisodeList()
     }
 }

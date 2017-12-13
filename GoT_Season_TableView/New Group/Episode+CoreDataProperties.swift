@@ -17,10 +17,11 @@ extension Episode {
         return NSFetchRequest<Episode>(entityName: "Episode")
     }
 
+    @NSManaged public var episode: String?
     @NSManaged public var imdbID: String?
     @NSManaged public var imdbRating: String?
     @NSManaged public var released: String?
     @NSManaged public var title: String?
-    @NSManaged public var downloadedEpisodeList: DownloadedEpisodeList?
+    @NSManaged public var downloaded: Bool
 
 }

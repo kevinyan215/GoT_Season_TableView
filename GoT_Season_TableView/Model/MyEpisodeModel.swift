@@ -15,5 +15,5 @@ class MyEpisodeModel {
     var imdbRating: String?
     var imdbID: String?
     var episodeDetail: MyEpisodeDetailModel?
-//    var didDownload: Bool?
+    var downloaded: Bool = false
 }

@@ -43,10 +43,14 @@
                         <rect key="frame" x="329" y="7" width="46" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="Download"/>
+                        <connections>
+                            <action selector="buttonPressed:" destination="B8N-xx-p41" eventType="touchUpInside" id="gJ5-qV-qLZ"/>
+                        </connections>
                     </button>
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="buttonOutlet" destination="Tdq-4h-FFc" id="wwd-ul-qwY"/>
                 <outlet property="imdbRating" destination="kfi-IR-iF5" id="KKl-dQ-rBj"/>
                 <outlet property="released" destination="Xu0-jh-1gY" id="ZtS-7h-thE"/>
                 <outlet property="title" destination="DFR-Fv-agH" id="3Sm-Tp-T2Z"/>

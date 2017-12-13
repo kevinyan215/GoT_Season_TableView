@@ -25,17 +25,18 @@ class AvailableSeasonViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //assign values to availableEpisodeDetailsVC
         
-        if let destVC = segue.destination as? AvailableEpisodeDetailViewController, let sectionRowSelected = sectionRowSelected, let episodeDetail = DataSource.myMainModel.seasons[sectionRowSelected.section].episodes?[sectionRowSelected.row].episodeDetail {
+        if let destVC = segue.destination as? EpisodeDetailViewController, let sectionRowSelected = sectionRowSelected, let episodeDetail = DataSource.myMainModel.seasons[sectionRowSelected.section].episodes?[sectionRowSelected.row].episodeDetail {
             
-            //using force unwrapping for convenience, but is bad practice.. should refractor later
-            destVC.bundleContainer[Keys.AvailableEpisodeDetailViewController.title] = episodeDetail.title
-            destVC.bundleContainer[Keys.AvailableEpisodeDetailViewController.year] = episodeDetail.year
-            destVC.bundleContainer[Keys.AvailableEpisodeDetailViewController.rated] = episodeDetail.rated
-            destVC.bundleContainer[Keys.AvailableEpisodeDetailViewController.released] = episodeDetail.released
-            destVC.bundleContainer[Keys.AvailableEpisodeDetailViewController.season] = episodeDetail.season
-            destVC.bundleContainer[Keys.AvailableEpisodeDetailViewController.episode] = episodeDetail.episode
+            //TODO: use coalescing operator to set N/A if there are no values..
+            //destVC.bundleContainer[Keys.AvailableEpisodeDetailViewController.title] = episodeDetail.title ?? "N/A"
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.title] = episodeDetail.title
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.year] = episodeDetail.year
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.rated] = episodeDetail.rated
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.released] = episodeDetail.released
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.season] = episodeDetail.season
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.episode] = episodeDetail.episode
             
-            destVC.bundleContainer[Keys.AvailableEpisodeDetailViewController.imdbVotes] = episodeDetail.imdbVotes
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.imdbVotes] = episodeDetail.imdbVotes
         } else {
             print("Getting nil episode detail @ prepareForSegue")
         }
