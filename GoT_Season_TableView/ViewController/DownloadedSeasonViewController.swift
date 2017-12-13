@@ -78,6 +78,28 @@ extension DownloadedSeasonViewController: UITableViewDataSource {
         cell.buttonOutlet.setTitle("Delete", for: .normal)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath){
+        print("commit")
+        //does insert need commit?
+        
+        //modified for Core Data
+        if editingStyle == .delete {
+            let episode = DataSource.downloadedEpisodeList[indexPath.row]
+            episode.downloaded = !episode.downloaded
+            CoreDataManager().updateDownloadStatusForAvailable() 
+            DataSource.downloadedEpisodeList.remove(at: indexPath.row)
+            CoreDataManager().clear()
+            CoreDataManager().insertAllToCoreData()
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.endUpdates()
+        }
+    }
 }
 
 extension DownloadedSeasonViewController: UITableViewDelegate {

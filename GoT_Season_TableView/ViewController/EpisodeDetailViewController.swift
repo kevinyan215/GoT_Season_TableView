@@ -34,7 +34,7 @@ class EpisodeDetailViewController: UIViewController {
     override func viewDidLoad() {
         let checkEpisodeDetailModel = DataSource.myMainModel.seasons
         
-        //force unwrapping again.. may need to refractor later..not good if values don't exist -> app crash -> which is horrible
+        //have to make sure these values exist.. even though they most likely do, but in the future..
         episodeTitle.text = bundleContainer[Keys.EpisodeDetailViewController.title] as! String
         year.text = "Year " +  (bundleContainer[Keys.EpisodeDetailViewController.year] as! String)
         rated.text = "Rated " +  (bundleContainer[Keys.EpisodeDetailViewController.rated] as! String)
@@ -46,13 +46,12 @@ class EpisodeDetailViewController: UIViewController {
         director.text = "Director " +  (bundleContainer[Keys.EpisodeDetailViewController.director]! as! String)
         writer.text = "Writer " +  (bundleContainer[Keys.EpisodeDetailViewController.writer]! as! String)
         actors.text = "Actors " +  (bundleContainer[Keys.EpisodeDetailViewController.actors]! as! String)
-        language.text = "Language " +  (bundleContainer[Keys.EpisodeDetailViewController.plot]! as! String)
+        plot.text = "Plot " +  (bundleContainer[Keys.EpisodeDetailViewController.plot]! as! String)
+        language.text = "Language " +  (bundleContainer[Keys.EpisodeDetailViewController.language]! as! String)
         country.text = "Country " +  (bundleContainer[Keys.EpisodeDetailViewController.country]! as! String)
         awards.text = "Awards " +  (bundleContainer[Keys.EpisodeDetailViewController.awards]! as! String)
         poster.text = "Poster " +  (bundleContainer[Keys.EpisodeDetailViewController.poster]! as! String)
         imdbRating.text = "ImdbRating " +  (bundleContainer[Keys.EpisodeDetailViewController.imdbRating]! as! String)
-        
-        
         imdbVotes.text = "Imdb Votes " +  (bundleContainer[Keys.EpisodeDetailViewController.imdbVotes]! as! String)
     }
 }
