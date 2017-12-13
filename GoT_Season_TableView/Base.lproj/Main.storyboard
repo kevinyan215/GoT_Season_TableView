@@ -82,22 +82,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4LS-T4-J4Z">
-                                <rect key="frame" x="162.84363968188109" y="320.24455446667116" width="46" height="30.000000000000227"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Enter"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4LS-T4-J4Z">
+                                <rect key="frame" x="104" y="280" width="167" height="107"/>
+                                <state key="normal" title="Enter" image="enter_button"/>
                                 <connections>
                                     <segue destination="pCp-mA-41g" kind="show" id="FXM-qt-JhN"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4LS-T4-J4Z" firstAttribute="top" secondItem="uZC-yT-8CZ" secondAttribute="top" constant="280" id="7Ac-sI-iy1"/>
+                            <constraint firstItem="4LS-T4-J4Z" firstAttribute="leading" secondItem="uZC-yT-8CZ" secondAttribute="leading" constant="104" id="FiN-ON-hpx"/>
+                            <constraint firstAttribute="bottom" secondItem="4LS-T4-J4Z" secondAttribute="bottom" constant="280" id="ox6-0E-Is6"/>
+                            <constraint firstAttribute="trailing" secondItem="4LS-T4-J4Z" secondAttribute="trailing" constant="104" id="wJ5-ng-FDB"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="IwZ-RX-qUv"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jcZ-Op-91C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1650" y="1290"/>
+            <point key="canvasLocation" x="-1650.4000000000001" y="1289.5052473763119"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="vji-zK-5T1">
@@ -320,6 +325,9 @@
             <point key="canvasLocation" x="17" y="1728"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="enter_button" width="541" height="207"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="hvI-uI-m02"/>
     </inferredMetricsTieBreakers>
