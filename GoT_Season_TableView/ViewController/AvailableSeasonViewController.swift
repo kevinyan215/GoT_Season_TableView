@@ -22,21 +22,35 @@ class AvailableSeasonViewController: UIViewController {
         tableView.register(seasonTableViewCellNib, forCellReuseIdentifier: Keys.Xib.SeasonTableViewCellId)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData() //to update buttons when episode is deleted from downloaded VC
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //assign values to availableEpisodeDetailsVC
         
         if let destVC = segue.destination as? EpisodeDetailViewController, let sectionRowSelected = sectionRowSelected, let episodeDetail = DataSource.myMainModel.seasons[sectionRowSelected.section].episodes?[sectionRowSelected.row].episodeDetail {
             
-            //TODO: use coalescing operator to set N/A if there are no values..
-            //destVC.bundleContainer[Keys.AvailableEpisodeDetailViewController.title] = episodeDetail.title ?? "N/A"
-            destVC.bundleContainer[Keys.EpisodeDetailViewController.title] = episodeDetail.title
-            destVC.bundleContainer[Keys.EpisodeDetailViewController.year] = episodeDetail.year
-            destVC.bundleContainer[Keys.EpisodeDetailViewController.rated] = episodeDetail.rated
-            destVC.bundleContainer[Keys.EpisodeDetailViewController.released] = episodeDetail.released
-            destVC.bundleContainer[Keys.EpisodeDetailViewController.season] = episodeDetail.season
-            destVC.bundleContainer[Keys.EpisodeDetailViewController.episode] = episodeDetail.episode
+            //use coalescing operator to set N/A if there are no values..
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.title] = episodeDetail.title ?? "N/A"
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.year] = episodeDetail.year ?? "N/A"
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.rated] = episodeDetail.rated ?? "N/A"
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.released] = episodeDetail.released ?? "N/A"
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.season] = episodeDetail.season ?? "N/A"
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.episode] = episodeDetail.episode ?? "N/A"
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.runtime] = episodeDetail.runtime ?? "N/A"
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.genre] = episodeDetail.genre ?? "N/A"
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.director] = episodeDetail.director ?? "N/A"
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.writer] = episodeDetail.writer ?? "N/A"
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.actors] = episodeDetail.actors ?? "N/A"
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.plot] = episodeDetail.plot ?? "N/A"
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.language] = episodeDetail.language ?? "N/A"
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.country] = episodeDetail.country ?? "N/A"
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.awards] = episodeDetail.awards ?? "N/A"
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.poster] = episodeDetail.poster ?? "N/A"
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.imdbRating] = episodeDetail.imdbRating ?? "N/A"
+            destVC.bundleContainer[Keys.EpisodeDetailViewController.imdbVotes] = episodeDetail.imdbVotes ?? "N/A"
             
-            destVC.bundleContainer[Keys.EpisodeDetailViewController.imdbVotes] = episodeDetail.imdbVotes
         } else {
             print("Getting nil episode detail @ prepareForSegue")
         }
@@ -61,6 +75,8 @@ extension AvailableSeasonViewController: UITableViewDataSource {
             cell.title.text = episode.title
             cell.released.text = episode.released
             cell.imdbRating.text = episode.imdbRating
+            let buttonTitle = episode.downloaded ? "Delete" : "Download"
+            cell.buttonOutlet.setTitle(buttonTitle, for: .normal)
         }
         return cell
     }

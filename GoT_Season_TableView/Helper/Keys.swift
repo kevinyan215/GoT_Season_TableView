@@ -12,6 +12,7 @@ struct Keys {
     struct Segue {
         static let availableSeasonVCtoDetailVCSegue = "availableSeasonVCtoDetailVC"
         static let splashScreenVCtoTabBarVCSegue = "SplashScreenVCtoTabBarVC"
+        static let downloadedSeasonVCtoDetailVC = "downloadedSeasonVCtoDetailVC"
     }
     
     struct EpisodeDetailViewController {

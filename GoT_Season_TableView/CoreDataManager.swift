@@ -42,7 +42,35 @@ class CoreDataManager {
         }
         return episodeList
     }
-
+    
+    
+    //update download button when restarting the app
+    func updateDownloadStatusForAvailable(){
+        compareDownloadsToAvailable { (downloadedEpisode, episode) in
+            if episode.title == downloadedEpisode.title {
+                episode.downloaded = downloadedEpisode.downloaded
+            }
+        }
+    }
+    
+    func setDownloadedEpisodeDetail(){
+        compareDownloadsToAvailable(handler: {(downloadedEpisode, episode) in
+            if downloadedEpisode.title == episode.title {
+                downloadedEpisode.episodeDetail = episode.episodeDetail
+            }
+        })
+    }
+    
+    func compareDownloadsToAvailable(handler: ((MyEpisodeModel, MyEpisodeModel)->Void)) {
+        for season in DataSource.myMainModel.seasons {
+            for episode in season.episodes! {
+                for downloadedEpisode in DataSource.downloadedEpisodeList {
+                    handler(downloadedEpisode, episode)
+                }
+            }
+        }
+    }
+    
     //insert all downloaded episodes to Core Data - have to figure out where to put it in order to use it- where in the app lifecycle?
     func insertAllToCoreData(){
         let managedObjectContext = getContext()
@@ -71,18 +99,15 @@ class CoreDataManager {
         }
     }
     
-    //not needed now. but will when deleting ..
+    //not needed now.
 //    func delete(episodeList: [Episode]){
 //        let managedObjectContext = getContext()
-//
 //        for episode in episodeList {
 //            managedObjectContext.delete(episode)
 //        }
-//
 //        do {
 //            try managedObjectContext.save()
 //        } catch {
-//
 //        }
 //    }
     

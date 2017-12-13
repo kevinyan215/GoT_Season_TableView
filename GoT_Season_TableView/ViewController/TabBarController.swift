@@ -14,6 +14,7 @@ class TabBarController: UITabBarController {
         // Do any additional setup after loading the view, typically from a nib.
         
         let networkManager = NetworkManager()
+        CoreDataManager().updateDownloadStatusForAvailable()
         networkManager.downloadEpisodeDetail()
         
         print("""

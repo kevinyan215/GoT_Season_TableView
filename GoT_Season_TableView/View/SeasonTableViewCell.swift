@@ -22,7 +22,7 @@ class SeasonTableViewCell: UITableViewCell {
         guard let contentView = sender.superview, let tableViewCell = contentView.superview as? UITableViewCell, let tableView = tableViewCell.superview as? UITableView else {
             return
         }
-        if let row = tableView.indexPath(for: tableViewCell)?.row, let section = tableView.indexPath(for: tableViewCell)?.section {
+        if let cellIndexPath = tableView.indexPath(for: tableViewCell), let row = tableView.indexPath(for: tableViewCell)?.row, let section = tableView.indexPath(for: tableViewCell)?.section {
             print("section: \(section), row: \(row)")
             if let viewController = self.next?.next?.next as? AvailableSeasonViewController {
                 if let episode = DataSource.myMainModel.seasons[section].episodes?[row] {
@@ -48,25 +48,32 @@ class SeasonTableViewCell: UITableViewCell {
                 }
             }
             
-//            else if let viewController = self.next?.next?.next as? DownloadedSeasonViewController {
-//                print("DownloadedSeasonViewController")
-//                if let episode = DataSource.downloadedEpisodeList[row] as? MyEpisodeModel {
-//                    print(episode.downloaded)
-//                    episode.downloaded = !episode.downloaded
-//                    //might be better to use a set. more efficient. this works for now though..
-//                    for (index,deleteEpisode) in DataSource.downloadedEpisodeList.enumerated() {
-//                        if deleteEpisode.imdbID == episode.imdbID {
-//                            DataSource.downloadedEpisodeList.remove(at: index)
-//                        }
-//                    }
-//                    
-//                    //remove from core data. same thing. probably can remove from core data later. just remove from local model now
-//                    
-//                    print("@ DownloadedSeasonViewController" )
-//                    print("Removed Episodes: \(episode)")
-//                }
-////                tableView.reloadData() //uncomment later when you implement delete... or whatever
-//            }
+            else if let viewController = self.next?.next?.next as? DownloadedSeasonViewController {
+                print("DownloadedSeasonViewController")
+                if let episode = DataSource.downloadedEpisodeList[row] as? MyEpisodeModel {
+                    print(episode.downloaded)
+                    episode.downloaded = !episode.downloaded
+                    CoreDataManager().updateDownloadStatusForAvailable() 
+                    //might be better to use a set. more efficient. this works for now though..
+                    for (index,deleteEpisode) in DataSource.downloadedEpisodeList.enumerated() {
+                        if deleteEpisode.title == episode.title {
+                            DataSource.downloadedEpisodeList.remove(at: index)
+                        }
+                    }
+                    tableView.beginUpdates()
+                    tableView.deleteRows(at: [cellIndexPath], with: .automatic)
+                    tableView.endUpdates()
+                    
+                    //refractor later
+                    CoreDataManager().clear()
+                    CoreDataManager().insertAllToCoreData()
+                    //remove from core data. same thing. probably can remove from core data later. just remove from local model now
+                    
+                    print("@ DownloadedSeasonViewController" )
+                    print("Removed Episodes: \(episode)")
+                }
+//                tableView.reloadData() //uncomment later when you implement delete... or whatever
+            }
         }
     }
 }
