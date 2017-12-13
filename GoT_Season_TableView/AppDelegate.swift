@@ -17,6 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        print("didFinishingLaunchingWithOptions")
+        //network stuff
+        let networkManager = NetworkManager()
+        networkManager.downloadMain()
+        networkManager.downloadSeasons()
+        networkManager.downloadEpisodeDetail()
+        //core data stuff
+        let dataManager = CoreDataManager()
+//        dataManager.clear()
+        
+        //Local Downloaded Episodes
+        DataSource.downloadedEpisodeList = dataManager.getEpisodeList()
+        
         return true
     }
 

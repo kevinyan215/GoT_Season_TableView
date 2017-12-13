@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dxw-fu-giB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Iqy-tl-Abw">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,23 +19,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zEJ-uW-27r">
-                                <rect key="frame" x="0.0" y="94" width="375" height="524"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JLr-de-KbL">
-                                <rect key="frame" x="190" y="73" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button2"/>
-                                <connections>
-                                    <segue destination="ScU-1x-fHK" kind="show" id="EJo-Iv-XmF"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="zEJ-uW-27r" firstAttribute="leading" secondItem="4tI-nk-aZm" secondAttribute="leading" id="LBg-0D-zAz"/>
                             <constraint firstItem="4tI-nk-aZm" firstAttribute="bottom" secondItem="zEJ-uW-27r" secondAttribute="bottom" id="PyS-wg-AGO"/>
-                            <constraint firstItem="zEJ-uW-27r" firstAttribute="top" secondItem="4tI-nk-aZm" secondAttribute="top" constant="30" id="Tgl-Xg-w2B"/>
+                            <constraint firstItem="zEJ-uW-27r" firstAttribute="top" secondItem="4tI-nk-aZm" secondAttribute="top" id="Tgl-Xg-w2B"/>
                             <constraint firstItem="4tI-nk-aZm" firstAttribute="trailing" secondItem="zEJ-uW-27r" secondAttribute="trailing" id="jIz-5p-URh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4tI-nk-aZm"/>
@@ -82,30 +74,30 @@
             </objects>
             <point key="canvasLocation" x="924" y="956.67166416791611"/>
         </scene>
-        <!--Main Screen View Controller-->
-        <scene sceneID="dlj-Al-gy6">
+        <!--View Controller-->
+        <scene sceneID="5yO-RL-icB">
             <objects>
-                <viewController id="dxw-fu-giB" customClass="MainScreenViewController" customModule="GoT_Season_TableView" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="YFk-Av-yuN">
+                <viewController id="Iqy-tl-Abw" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uZC-yT-8CZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIf-Zu-0AB">
-                                <rect key="frame" x="124" y="252" width="154" height="100"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4LS-T4-J4Z">
+                                <rect key="frame" x="162.84363968188109" y="320.24455446667116" width="46" height="30.000000000000227"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Enter"/>
                                 <connections>
-                                    <segue destination="pCp-mA-41g" kind="show" id="hfB-Mx-Qpg"/>
+                                    <segue destination="pCp-mA-41g" kind="show" id="FXM-qt-JhN"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Lc9-C7-7wo"/>
+                        <viewLayoutGuide key="safeArea" id="IwZ-RX-qUv"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hhJ-Vi-5VT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jcZ-Op-91C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1703.2" y="1275.1124437781111"/>
+            <point key="canvasLocation" x="-1650" y="1290"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="vji-zK-5T1">
@@ -330,7 +322,4 @@
             <point key="canvasLocation" x="17" y="1728"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="EJo-Iv-XmF"/>
-    </inferredMetricsTieBreakers>
 </document>

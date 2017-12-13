@@ -91,10 +91,8 @@ extension AvailableSeasonViewController: UITableViewDelegate {
             return
         }
         print("Episode Seasons: \(episodeDetails.season), Episode number: \(episodeDetails.episode), Episode Title: \(episodeDetails.title)")
-        
-        
+
         sectionRowSelected = (indexPath.section, indexPath.row)
-        
         performSegue(withIdentifier: Keys.Segue.availableSeasonVCtoDetailVCSegue, sender: self)
     }
 }

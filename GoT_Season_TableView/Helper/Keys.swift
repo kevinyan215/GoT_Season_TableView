@@ -11,6 +11,7 @@ import Foundation
 struct Keys {
     struct Segue {
         static let availableSeasonVCtoDetailVCSegue = "availableSeasonVCtoDetailVC"
+        static let splashScreenVCtoTabBarVCSegue = "SplashScreenVCtoTabBarVC"
     }
     
     struct EpisodeDetailViewController {

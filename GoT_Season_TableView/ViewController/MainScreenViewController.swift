@@ -10,18 +10,7 @@ import Foundation
 import UIKit
 
 class MainScreenViewController: UIViewController {
-    
     override func viewDidLoad() {
-        //network stuff
-        let networkManager = NetworkManager()
-        networkManager.downloadMain()
-        networkManager.downloadSeasons()
-        networkManager.downloadEpisodeDetail()
-        //core data stuff
-        let dataManager = CoreDataManager()
-//        dataManager.clear()
-        
-        //Local Downloaded Episodes
-        DataSource.downloadedEpisodeList = dataManager.getEpisodeList()
+        super.viewDidLoad()
     }
 }

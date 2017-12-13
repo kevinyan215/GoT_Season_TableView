@@ -16,7 +16,7 @@ class SeasonTableViewCell: UITableViewCell {
     @IBOutlet weak var buttonOutlet: UIButton!
     
     //cant access tableview yet..
-    override func awakeFromNib() {}
+//    override func awakeFromNib() {}
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         guard let contentView = sender.superview, let tableViewCell = contentView.superview as? UITableViewCell, let tableView = tableViewCell.superview as? UITableView else {
