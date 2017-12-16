@@ -19,6 +19,7 @@ class NetworkManager {
                 Parser.parseMain(input: serializedJson)
             }
         })
+    
     }
     
     func downloadSeasons() {
@@ -26,15 +27,26 @@ class NetworkManager {
 //            print("canceled download seasons. Invalid total season in DataSource.main.totalseasons")
 //            return
 //        }
+        let group = DispatchGroup()
         let totalSeason = 8
         for season in 1...totalSeason {
             let endPoint = GameOfThronesAPI.EndPoint.main + GameOfThronesAPI.EndPoint.gameOfThrones + GameOfThronesAPI.EndPoint.season + "\(season)"
 //            print(endPoint)
+            group.enter()
             downloadEndPoint(urlString: endPoint, handler: {(serializedJson) in
                 if let serializedJson = serializedJson as? [String:Any]{
                     Parser.parseSeason(input: serializedJson)
+                    print("finished parseSeason")
+                    group.leave()
                 }
             })
+        }
+        group.notify(queue: DispatchQueue.main) {
+            print("Finished all requests.")
+            
+            //delegate do xyz after downloading
+            self.delegate?.didDownload()
+            print("called delegate in downloadSeasons")
         }
     }
     
@@ -50,6 +62,7 @@ class NetworkManager {
                     downloadEndPoint(urlString: url, handler: {(serializedJson) in
                         if let serializedJson = serializedJson as? [String:Any] {
                             episode.episodeDetail = Parser.parseEpisodeDetail(input: serializedJson)
+                            print("finished parseEpisodeDetail")
                         }
                     })
                 }
@@ -76,8 +89,7 @@ class NetworkManager {
                         DispatchQueue.main.async {
 //                            print("Download Type: (downloadType), Serialized Json: \(serializedJson)") // runs on main thread?
                             handler(serializedJson)
-                            //delegate do xyz after downloading
-                            //self.delegate?.didDownload()
+
                         }
                 }
             } catch {

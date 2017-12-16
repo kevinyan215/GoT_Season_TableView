@@ -14,12 +14,29 @@ class AvailableSeasonViewController: UIViewController {
     var sectionRowSelected: (section: Int, row: Int)?
     
     override func viewDidLoad(){
+        //network stuff
+        let networkManager = NetworkManager()
+        networkManager.delegate = self
+        networkManager.downloadMain()
+//        DataSource.myMainModel.totalSeasons = 8
+        networkManager.downloadSeasons()
+        networkManager.downloadEpisodeDetail()
+        //core data stuff
+        let dataManager = CoreDataManager()
+        dataManager.clear()
+        
+        //Getting the Downloaded Episodes from Core Data to cache
+        DataSource.downloadedEpisodeList = dataManager.getEpisodeList()
+        CoreDataManager().updateDownloadStatusForAvailable()
+        
         tableView.dataSource = self
         tableView.delegate = self
         
         //Creating/instantiating the nib -> then use TableView to register it
         let seasonTableViewCellNib: UINib = UINib(nibName: Keys.Xib.SeasonTableViewCellId, bundle: nil)
         tableView.register(seasonTableViewCellNib, forCellReuseIdentifier: Keys.Xib.SeasonTableViewCellId)
+        
+        print("end of AvailableSeasonViewController viewDidLoad")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,7 +80,7 @@ extension AvailableSeasonViewController: UITableViewDataSource {
             return numberOfRows
         } else {
             print("Calculated Invalid Number of Rows")
-            return 1
+            return 0
         }
     }
 
@@ -88,7 +105,7 @@ extension AvailableSeasonViewController: UITableViewDataSource {
             return sections
         } else {
             print("Calculated Invalid Number of Sections")
-            return 1
+            return 0
         }
     }
     
@@ -114,4 +131,14 @@ extension AvailableSeasonViewController: UITableViewDelegate {
         performSegue(withIdentifier: Keys.Segue.availableSeasonVCtoDetailVCSegue, sender: self)
     }
 }
+
+extension AvailableSeasonViewController: NetworkManagerDelegate {
+    func didDownload() {
+        print("reloaded data")
+        tableView.reloadData()
+    }
+    
+
+}
+
 

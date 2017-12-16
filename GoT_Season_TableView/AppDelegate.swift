@@ -19,18 +19,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         print("didFinishingLaunchingWithOptions")
-        //network stuff
-        let networkManager = NetworkManager()
-        networkManager.downloadMain()
-        networkManager.downloadSeasons()
-        networkManager.downloadEpisodeDetail()
-        //core data stuff
-        let dataManager = CoreDataManager()
+//        //network stuff
+//        let networkManager = NetworkManager()
+//        networkManager.downloadMain()
+//        networkManager.downloadSeasons()
+//        networkManager.downloadEpisodeDetail()
+//        //core data stuff
+//        let dataManager = CoreDataManager()
 //        dataManager.clear()
-        
-        //Local Downloaded Episodes
-        DataSource.downloadedEpisodeList = dataManager.getEpisodeList()
-        
+//
+//        //Getting the Downloaded Episodes from Core Data to cache
+//        DataSource.downloadedEpisodeList = dataManager.getEpisodeList()
+
         return true
     }
 
