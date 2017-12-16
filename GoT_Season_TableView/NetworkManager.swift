@@ -41,13 +41,23 @@ class NetworkManager {
                 }
             })
         }
-        group.notify(queue: DispatchQueue.main) {
-            print("Finished all requests.")
-            
-            //delegate do xyz after downloading
+        group.notify(queue: DispatchQueue.main, execute: {() in
             self.delegate?.didDownload()
             print("called delegate in downloadSeasons")
-        }
+        })
+        
+        //awesome closure implied syntax....
+//        group.notify(queue: DispatchQueue.main) {
+//            print("Finished all requests.")
+//
+//            //delegate do xyz after downloading
+//            self.delegate?.didDownload()
+//            print("called delegate in downloadSeasons")
+//        }
+        
+//        group.wait() //causes the main thread to pause -> could be used but needs to use another thread to do the work, or this will cause a deadlock on the main thread.
+//        self.delegate?.didDownload()
+//        print("called delegate in downloadSeasons")
     }
     
     func downloadEpisodeDetail() {
