@@ -18,9 +18,9 @@ class AvailableSeasonViewController: UIViewController {
         let networkManager = NetworkManager()
         networkManager.delegate = self
         networkManager.downloadMain()
-//        DataSource.myMainModel.totalSeasons = 8
         networkManager.downloadSeasons()
         networkManager.downloadEpisodeDetail()
+        
         //core data stuff
         let dataManager = CoreDataManager()
         dataManager.clear()

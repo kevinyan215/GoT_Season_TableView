@@ -11,9 +11,12 @@ import Foundation
 //also be aware of memory leaks.. might have to include weak... later
 class NetworkManager {
     var delegate: NetworkManagerDelegate?
+    let mainUrlGoT = GameOfThronesAPI.EndPoint.main + GameOfThronesAPI.EndPoint.gameOfThrones
+    let seasonUrlGoT = GameOfThronesAPI.EndPoint.main + GameOfThronesAPI.EndPoint.gameOfThrones + GameOfThronesAPI.EndPoint.season
+    let episodeDetailUrlGoT = GameOfThronesAPI.EndPoint.main + GameOfThronesAPI.EndPoint.episode
     
     func downloadMain(){
-        let urlString = GameOfThronesAPI.EndPoint.main + GameOfThronesAPI.EndPoint.gameOfThrones
+        let urlString = mainUrlGoT
         downloadEndPoint(urlString: urlString, handler: {(serializedJson) in
             if let serializedJson = serializedJson as? [String:Any]{
                 Parser.parseMain(input: serializedJson)
@@ -30,7 +33,7 @@ class NetworkManager {
         let group = DispatchGroup()
         let totalSeason = 8
         for season in 1...totalSeason {
-            let endPoint = GameOfThronesAPI.EndPoint.main + GameOfThronesAPI.EndPoint.gameOfThrones + GameOfThronesAPI.EndPoint.season + "\(season)"
+            let endPoint = seasonUrlGoT + "\(season)"
 //            print(endPoint)
             group.enter()
             downloadEndPoint(urlString: endPoint, handler: {(serializedJson) in
@@ -67,7 +70,7 @@ class NetworkManager {
             }
             for episode in episodeList {
                 if let imdbId = episode.imdbID {
-                    let url = GameOfThronesAPI.EndPoint.main + GameOfThronesAPI.EndPoint.episode + imdbId
+                    let url = episodeDetailUrlGoT + imdbId
 //                    print("Episode Detail URL: \(url)")
                     downloadEndPoint(urlString: url, handler: {(serializedJson) in
                         if let serializedJson = serializedJson as? [String:Any] {

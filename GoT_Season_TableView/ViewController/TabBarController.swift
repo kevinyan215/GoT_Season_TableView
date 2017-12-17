@@ -13,11 +13,6 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
-//        let networkManager = NetworkManager()
-//        CoreDataManager().updateDownloadStatusForAvailable()
-//        networkManager.downloadEpisodeDetail()
-        
         print("""
             DataSource model:
             Seasons: \(DataSource.myMainModel.seasons)
