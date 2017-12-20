@@ -20,9 +20,10 @@ class NetworkManager {
         downloadEndPoint(urlString: urlString, handler: {(serializedJson) in
             if let serializedJson = serializedJson as? [String:Any]{
                 Parser.parseMain(input: serializedJson)
+            } else {
+                print("Serialized Json is not of the specified type... instead got \(type(of: serializedJson))")
             }
         })
-    
     }
     
     func downloadSeasons() {
